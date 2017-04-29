@@ -110,10 +110,19 @@ public class WinningForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       work w= new work();
+      
+        try{
+        
+        work w= new work();
         String a= w.ab();
+        String b= w.ac();
+        jTextField1.setText(b);
         jTextField2.setText(a);
         // TODO add your handling code here:
+        }
+        catch(Exception e){
+            
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
  
     /**

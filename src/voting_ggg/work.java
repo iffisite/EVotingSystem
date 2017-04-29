@@ -5,14 +5,18 @@
  */
 package voting_ggg;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import static jdk.nashorn.internal.objects.NativeArray.map;
 
 /**
@@ -64,34 +68,74 @@ public class work {
      for (Map.Entry<String , Integer> entry : map.entrySet()){
        System.out.println(entry);}
   }
-  public String ab(){
+  public String ab() throws FileNotFoundException, IOException{
          int count=0;
-    Scanner file2= new Scanner("PS.txt");
-  HashMap<Integer , String> map2 = new HashMap<Integer , String > ();
-         while (file2.hasNext()){
-          String word = file2.next();
-          if (map2.containsValue(word)){
-           count++;
-          map2.put( count, word);
+         BufferedReader file2= new BufferedReader(new FileReader("PS.txt"));
+  HashMap<String , Integer> map2 = new HashMap<String , Integer > ();
+         String word = file2.readLine();
+            while (word != null){
+          
+                
+                 if (map2.containsKey(word)){
+          count = map2.get(word) + 1;
+          map2.put(word , count);
           }
           else{
-          map2.put(1 , word);
+          map2.put(word , 1);
           }
+          word = file2.readLine();
       }
       file2.close();
       int a;
       int b=0;
       String c = null;
     
-     for (Map.Entry<Integer , String> entry : map2.entrySet()){
+     for (Map.Entry<String , Integer> entry : map2.entrySet()){
       // System.out.println(entry);
-      a=entry.getKey();
+      a=entry.getValue();
+    
       if (a> b){
       b=a;
 //      c=entry.getKey();
-     c =entry.getValue();
+      c =  entry.getKey();
+    
       //c = entry.toString();
       }}
-      return c;
+      return c+"";
+  }
+  public String ac() throws FileNotFoundException, IOException{
+         int count=0;
+         BufferedReader file= new BufferedReader(new FileReader("NA.txt"));
+  HashMap<String , Integer> map = new HashMap<String , Integer > ();
+         String word = file.readLine();
+            while (word != null){
+          
+                
+                 if (map.containsKey(word)){
+          count = map.get(word) + 1;
+          map.put(word , count);
+          }
+          else{
+          map.put(word , 1);
+          }
+          word = file.readLine();
+      }
+      file.close();
+      int a;
+      int b=0;
+      String c = null;
+    
+     for (Map.Entry<String , Integer> entry : map.entrySet()){
+      // System.out.println(entry);
+      a=entry.getValue();
+    
+      if (a> b){
+      b=a;
+//      c=entry.getKey();
+      c =  entry.getKey();
+    
+      //c = entry.toString();
+      }}
+      return c+"";
   }
 }
